@@ -1,0 +1,142 @@
+Group Algorithm Problems
+
+#Question_1_Eluer2:
+public class Euler2 {
+
+    public static int sum1(){
+        int limit = 4000000 ;
+        int sum = 0;
+        int a = 1;
+        int b = 1;
+        int c = a + b;
+        while(b < limit){
+            sum += c;
+            a = b + c;
+            b = a + c;
+            c = a + b;
+        }
+        return sum;
+    }
+    public static void main(String[] args) {
+
+        System.out.println(sum1());
+    }
+}
+
+
+Q#uestion_2_Eluer3:
+public class Euler3 {
+    public static void main(String[] args) {
+        long num = 600851475143L;
+        long factor = 2L;
+        while(num > 1){
+            if(num % factor == 0){
+                while(num % factor == 0){
+                    num = num / factor;
+                }
+            }else{
+                factor += 1;
+            }
+
+        }
+        System.out.println(factor);
+    }
+}
+
+
+#Question_3_Eluer4:
+public class Euler4 {
+    public boolean isPalindrome( String s ) {
+        //if odd length then remove middle character
+        if ( s.length() % 2 != 0 ) {
+            s = s.substring( 0, s.length() / 2 ) + s.substring( (s.length() / 2) + 1);
+        }
+        return new StringBuffer( s.substring( 0, s.length() / 2) ).reverse().toString().equals( s.substring( s.length() / 2) );
+    }
+
+    public static void main(String[] args) {
+        Euler4 e = new Euler4();
+        long biggest = 0;
+
+        int a = 999, b = 999;
+        for (int bb = b; bb > 0; bb--) {
+            for (int aa = a; aa > 0; aa--) {
+                if ( e.isPalindrome(Long.toString(aa * bb)) ) {
+                    if ( aa*bb > biggest ) {
+                        biggest = aa*bb;
+                    }
+                }
+            }
+        }
+        System.out.println(biggest);
+    }
+}
+
+
+#Question_4_Eluer5:
+public class Euler5 {
+    public static void main(String[] args){
+        long c = 21;
+        while (true) {
+            boolean all = true;
+            for (int i = 1; i < 21; i++) {
+                all = true;
+                if ( c % i != 0 ) {
+                    all = false;
+                    break;
+                }
+            }
+            if ( all ) {
+                System.out.println( c );
+                System.exit(0);
+            }
+            c++;
+        }
+    }
+}
+
+
+
+#Question_5_Leetcode7:
+public class Leetcode7 {
+    public int reverse(int x) {
+        if(x == 0) return 0;
+        int res = 0;
+        while(x != 0){
+            int mod = x % 10;
+            int pre = res;
+            res = res * 10 + mod;
+            if((res - mod) / 10 != pre)
+                return 0;
+            x = x / 10;
+        }
+        return res;
+    }
+    public static void main(String[] args){
+        System.out.println(new Leetcode7().reverse((123678)));
+    }
+}
+
+
+
+
+
+#Question_6_Leetcode26:
+public class Leetcode26 {
+    public int removeDuplicates(int[] nums) {
+        if(nums.length < 2)
+            return nums.length;
+        int l = 0, r = 1;
+        while(l < nums.length && r < nums.length){
+            if(nums[l] == nums[r])
+                r ++;
+            else
+                nums[++ l] = nums[r ++];
+        }
+        return l + 1;
+    }
+    public static void main(String[] args){
+        int[] nums = {0,0,1,1,1,2,2,3,3,4};
+        System.out.println(new Leetcode26().removeDuplicates(nums));
+    }
+}
